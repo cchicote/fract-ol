@@ -20,6 +20,14 @@ int			env_init(t_env *new, char *argv)
 	new->win = mlx_new_window(new->mlx, WINX, WINY, "fractol");
 	new->img = mlx_new_image(new->mlx, WINX, WINY);
 	new->data = mlx_get_data_addr(new->img, &(new->bpp), &(new->sl), &(new->endian));
+	new->x1 = -2.1;
+	new->y1 = 0.6;
+	new->x2 = -1.2;
+	new->y2 = 1.5;
+	new->prof = 10;
+	new->zoom = 6;
+	new->centerx = WINX;
+	new->centery = WINY;
 	return (0);
 }
 

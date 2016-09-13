@@ -25,29 +25,29 @@ void		my_pixel_put(t_env *e, int x, int y, int color)
 	}
 }
 
+// quand on zoom, pour zoomer au milieu il faut rajouter la position (WINX / 2) aux coordonnees
+
 void		mandelgo(t_env *e, double x, double y)
 {
 	double	i;
-	double	c_r;
-	double	c_i;
-	double 	z_r;
-	double	z_i;
 	double	tmp;
 
-	c_r = x / WINX * 2 - 2.1;
-	c_i = y / WINY * 2 - 1.2;
-	z_r = 0;
-	z_i = 0;
+	e->zoom_x = WINX / (e->x2 - e->x1);
+	e->zoom_y = 
+	e->c_r = x / WINX / 2 * e->zoom + e->x1;
+	e->c_i = y / WINY / 2 * e->zoom + e->x2;
+	e->z_r = 0;
+	e->z_i = 0;
 	i = 0;
-	while ((z_r * z_r + z_i * z_i < 4) && (i < 50))
+	while ((e->z_r * e->z_r + e->z_i * e->z_i < 4) && (i < e->prof))
 	{
-		tmp = z_r;
-		z_r = z_r * z_r - z_i * z_i + c_r;
-		z_i = (z_i + z_i) * tmp + c_i;
+		tmp = e->z_r;
+		e->z_r = e->z_r * e->z_r - e->z_i * e->z_i + e->c_r;
+		e->z_i = (e->z_i + e->z_i) * tmp + e->c_i;
 		i++;
 	}
-	if (i == 50)
-		my_pixel_put(e, (int)x, (int)y, 0xff0000);
+	if (i == e->prof)
+		my_pixel_put(e, (int)x, (int)y, 0x5F9EA0);
 }
 
 void		mandelbrot(t_env *e)

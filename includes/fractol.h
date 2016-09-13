@@ -33,6 +33,18 @@ typedef struct	s_env
 	int			sl;
 	int			endian;
 	char		*proj;
+	double		c_r;
+	double		c_i;
+	double 		z_r;
+	double		z_i;
+	double		x1;
+	double		y1;
+	double		x2;
+	double		y2;
+	double		prof;
+	double		zoom;
+	double		centerx;
+	double		centery;
 }				t_env;
 
 /*
