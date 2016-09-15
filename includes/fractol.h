@@ -15,6 +15,7 @@
 
 # include "../libft/includes/libft.h"
 # include "../minilibx_macos/X.h"
+# include "../minilibxLinux/mlx.h"
 # include <stdio.h>
 # include <math.h>
 # include <mlx.h>
@@ -32,6 +33,7 @@ typedef struct	s_env
 	int			bpp;
 	int			sl;
 	int			endian;
+	int			color;
 	char		*proj;
 	double		c_r;
 	double		c_i;
@@ -45,6 +47,8 @@ typedef struct	s_env
 	double		zoom;
 	double		centerx;
 	double		centery;
+	double		zoom_x;
+	double		zoom_y;
 }				t_env;
 
 /*
@@ -67,8 +71,9 @@ int				manage_key(int keycode, void *e);
 */
 
 void			my_pixel_put(t_env *e, int x, int y, int color);
-void			mandelbrot(t_env *e);
-void			mandelgo(t_env *e, double x, double y);
+void			navigante(t_env *e);
+void			mandelbrot(t_env *e, double x, double y);
+void			julia(t_env *e, double x, double y);
 
 
 

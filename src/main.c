@@ -20,14 +20,11 @@ int			env_init(t_env *new, char *argv)
 	new->win = mlx_new_window(new->mlx, WINX, WINY, "fractol");
 	new->img = mlx_new_image(new->mlx, WINX, WINY);
 	new->data = mlx_get_data_addr(new->img, &(new->bpp), &(new->sl), &(new->endian));
-	new->x1 = -2.1;
-	new->y1 = 0.6;
-	new->x2 = -1.2;
-	new->y2 = 1.5;
 	new->prof = 10;
 	new->zoom = 6;
 	new->centerx = WINX;
 	new->centery = WINY;
+	new->color = 0xffffff;
 	return (0);
 }
 
@@ -63,7 +60,7 @@ int			main(int argc, char **argv)
 	}
 	if (env_init(&e, argv[1]) == -1)
 		return (0);
-	mandelbrot(&e);
+	navigante(&e);
 	mlx_hook(e.win, KeyPress, KeyPressMask, manage_key, &e);
 	mlx_loop(e.mlx);
 	return (0);

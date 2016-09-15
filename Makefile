@@ -12,11 +12,15 @@
 
 NAME = fractol
 
-INCLUDES = -I./libft/ -I./minilibx/
+INCLUDES = -I./libft/ -I./minilibx/ -I./includes/ -I./minilibxLinux/
 
 CFLAGS = -Wall -Werror -Wextra $(INCLUDES) #-Werror
 
 MLXOSX = -lmlx -framework OpenGL -framework AppKit
+
+LXLIBMLX = -L ./minilibxLinux/ -lmlx
+
+MLXLINUX = -L/usr/X11/lib -lXext -lX11 -lm
 
 LIBFT = -L ./libft/ -lft
 
@@ -33,11 +37,16 @@ all: osx
 libft:
 	@make -C libft
 
+linux: libft $(SRCO)
+	@make -C minilibxLinux/
+	@gcc $(CFLAGS) -o $(NAME) $(SRCO) $(LIBFT) $(LXLIBMLX) $(MLXLINUX) -lm
+	@echo "\033[32;40m\ncompilation OK\n\033[0;0m"
+
 osx: libft $(SRCO)
 	@gcc $(CFLAGS) -o $(NAME) $(SRCO) $(LIBFT) $(MLXOSX)
 	@echo "\033[32;40m\ncompilation OK\n\033[0;0m"
 
-.PHONY: clean fclean osx libft re all
+.PHONY: clean fclean osx libft re all linux
 
 clean:
 	@make -C libft/ clean
@@ -47,5 +56,6 @@ fclean: clean
 	@make -C libft/ fclean
 	@/bin/rm -f $(NAME)
 
-re: fclean all
+relinux: fclean linux
 
+re: fclean all
