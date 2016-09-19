@@ -63,8 +63,9 @@ int				read_arg(t_env *e, char *argv);
 ** MANAGE_KEY.C
 */
 
-void			treat_keycode(int keycode, t_env *e);
 int				manage_key(int keycode, void *e);
+void			treat_keycode_2(int keycode, t_env *e);
+void			treat_keycode(int keycode, t_env *e);
 
 /*
 ** DRAW.C
@@ -74,6 +75,8 @@ void			my_pixel_put(t_env *e, int x, int y, int color);
 void			navigante(t_env *e);
 void			mandelbrot(t_env *e, double x, double y);
 void			julia(t_env *e, double x, double y);
+void			prep_julia(t_env *e, double x, double y);
+void			prep_mandelbrot(t_env *e, double x, double y);
 
 
 

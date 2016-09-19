@@ -22,6 +22,10 @@ int			env_init(t_env *new, char *argv)
 	new->data = mlx_get_data_addr(new->img, &(new->bpp), &(new->sl), &(new->endian));
 	new->prof = 10;
 	new->zoom = 6;
+	new->x1 = 0;
+	new->x2 = 0;
+	new->y1 = 0;
+	new->y2 = 0;
 	new->centerx = WINX;
 	new->centery = WINY;
 	new->color = 0xffffff;
