@@ -27,6 +27,39 @@ void		my_pixel_put(t_env *e, int x, int y, int color)
 
 // quand on zoom, pour zoomer au milieu il faut rajouter la position (WINX / 2) aux coordonnees
 
+void		prep_burningship(t_env *e, double x, double y)
+{
+	if (e->x1 == 0 && e->x2 == 0 && e->y1 == 0 && e->y2 == 0)
+	{
+		e->x1 = -2.1;
+		e->x2 = -2.1;
+	}
+	burningship(e, x, y);
+}
+
+
+void		burningship(t_env *e, double x, double y)
+{
+	double i;
+	double tmp;
+
+	e->z_r = 0;
+	e->z_i = 0;
+	e->c_r = x / WINX / 2 * e->zoom + e->x1;
+	e->c_i = y / WINY / 2 * e->zoom + e->x2;
+	i = 0;
+	while ((e->z_r * e->z_r + e->z_i * e->z_i < 4) && (i < e->prof))
+	{
+		tmp = e->z_r;
+		e->z_r = e->z_r * e->z_r - e->z_i * e->z_i + e->c_r;
+		e->z_i = 2 * fabs(e->z_i) * fabs(tmp) + e->c_i;
+		i++;
+	}
+	if (i == e->prof)
+		my_pixel_put(e, (int)x, (int)y, e->color);
+}
+
+
 void		prep_julia(t_env *e, double x, double y)
 {
 	if (e->x1 == 0 && e->x2 == 0 && e->y1 == 0 && e->y2 == 0)
@@ -107,6 +140,8 @@ void		navigante(t_env *e)
 		{
 			if (ft_strcmp(e->proj, "julia") == 0)
 				prep_julia(e, x, y);
+			else if (ft_strcmp(e->proj, "burningship") == 0)
+				prep_burningship(e, x, y);
 			else
 				prep_mandelbrot(e, x, y);
 		}

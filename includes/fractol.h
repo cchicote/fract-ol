@@ -20,8 +20,8 @@
 # include <math.h>
 # include <mlx.h>
 # include <fcntl.h>
-# define WINX 1000.0
-# define WINY 1000.0
+# define WINX 500.0
+# define WINY 500.0
 
 
 typedef struct	s_env
@@ -77,7 +77,7 @@ void			mandelbrot(t_env *e, double x, double y);
 void			julia(t_env *e, double x, double y);
 void			prep_julia(t_env *e, double x, double y);
 void			prep_mandelbrot(t_env *e, double x, double y);
-
-
+void			burningship(t_env *e, double x, double y);
+void			prep_burningship(t_env *e, double x, double y);
 
 #endif

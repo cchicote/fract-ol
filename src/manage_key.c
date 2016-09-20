@@ -20,11 +20,11 @@ void		treat_keycode_2(int keycode, t_env *e)
 		e->prof++;
 	else if ((keycode == 78 || keycode == 65453) && e->prof > 1)
 		e->prof--;
-	else if (keycode == 47)// || keycode == 46)
+	else if (keycode == 47 || keycode == 46)
 	{
 		e->zoom += 0.05;
 	}
-	else if (keycode == 43)// || keycode == 44)
+	else if (keycode == 43 || keycode == 44)
 	{
 		e->zoom -= 0.05;
 	}

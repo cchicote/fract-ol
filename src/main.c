@@ -39,7 +39,7 @@ int			read_arg(t_env *e, char *argv)
 	i = -1;
 	while (argv[++i])
 		argv[i] = ft_tolower(argv[i]);
-	if (ft_strcmp(argv, "julia") == 0 || ft_strcmp(argv, "mandelbrot") == 0)
+	if (ft_strcmp(argv, "julia") == 0 || ft_strcmp(argv, "mandelbrot") == 0 || ft_strcmp(argv, "burningship") == 0)
 		e->proj = ft_strdup(argv);
 	else
 	{
@@ -48,6 +48,7 @@ int			read_arg(t_env *e, char *argv)
 		ft_putendl("Available parameters:");
 		ft_putendl("-julia");
 		ft_putendl("-mandelbrot");
+		ft_putendl("-burningship");
 		return (-1);
 	}
 	return (0);
