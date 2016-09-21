@@ -29,10 +29,10 @@ void		my_pixel_put(t_env *e, int x, int y, int color)
 
 void		prep_burningship(t_env *e, double x, double y)
 {
-	if (e->x1 == 0 && e->x2 == 0 && e->y1 == 0 && e->y2 == 0)
+	if (e->pos_x == 0 && e->pos_y == 0)
 	{
-		e->x1 = -2.1;
-		e->x2 = -2.1;
+		e->pos_x = -2.1;
+		e->pos_y = -2.1;
 	}
 	burningship(e, x, y);
 }
@@ -45,8 +45,8 @@ void		burningship(t_env *e, double x, double y)
 
 	e->z_r = 0;
 	e->z_i = 0;
-	e->c_r = x / WINX / 2 * e->zoom + e->x1;
-	e->c_i = y / WINY / 2 * e->zoom + e->x2;
+	e->c_r = x / WINX / 2 * e->zoom + e->pos_x;
+	e->c_i = y / WINY / 2 * e->zoom + e->pos_y;
 	i = 0;
 	while ((e->z_r * e->z_r + e->z_i * e->z_i < 4) && (i < e->prof))
 	{
@@ -62,12 +62,10 @@ void		burningship(t_env *e, double x, double y)
 
 void		prep_julia(t_env *e, double x, double y)
 {
-	if (e->x1 == 0 && e->x2 == 0 && e->y1 == 0 && e->y2 == 0)
+	if (e->pos_x == 0 && e->pos_y == 0)
 	{
-		e->x1 = -1;
-		e->x2 = 1;
-		e->y1 = -1.2;
-		e->y2 = 1.2;
+		e->pos_x = -1;
+		e->pos_y = -1.2;
 	}
 	julia(e, x, y);
 }
@@ -79,8 +77,8 @@ void		julia(t_env *e, double x, double y)
 
 	e->c_r = 0.285;
 	e->c_i = 0.01;
-	e->z_r = x / WINX / 2 * e->zoom + e->x1;
-	e->z_i = y / WINY / 2 * e->zoom + e->y1;
+	e->z_r = x / WINX / 2 * e->zoom + e->pos_x;
+	e->z_i = y / WINY / 2 * e->zoom + e->pos_y;
 	i = 0;
 	while ((e->z_r * e->z_r + e->z_i * e->z_i < 4) && (i < e->prof))
 	{
@@ -95,12 +93,10 @@ void		julia(t_env *e, double x, double y)
 
 void		prep_mandelbrot(t_env *e, double x, double y)
 {
-	if (e->x1 == 0 && e->x2 == 0 && e->y1 == 0 && e->y2 == 0)
+	if (e->pos_x == 0 && e->pos_y == 0)
 	{
-		e->x1 = -2.1;
-		e->y1 = 0.6;
-		e->x2 = -1.2;
-		e->y2 = 1.2;
+		e->pos_x = -2.1;
+		e->pos_y = -1.2;
 	}
 	mandelbrot(e, x, y);
 }
@@ -110,8 +106,8 @@ void		mandelbrot(t_env *e, double x, double y)
 	double	i;
 	double	tmp;
 
-	e->c_r = x / WINX / 2 * e->zoom + e->x1;
-	e->c_i = y / WINY / 2 * e->zoom + e->x2;
+	e->c_r = x / WINX / 2 * e->zoom + e->pos_x;
+	e->c_i = y / WINY / 2 * e->zoom + e->pos_y;
 	e->z_r = 0;
 	e->z_i = 0;
 	i = 0;

@@ -14,9 +14,7 @@
 
 void		treat_keycode_2(int keycode, t_env *e)
 {
-	if (keycode == 123 || keycode == 65361)
-		e->x1 -= 0.01;
-	else if (keycode == 69 || keycode == 65451)
+	if (keycode == 69 || keycode == 65451)
 		e->prof++;
 	else if ((keycode == 78 || keycode == 65453) && e->prof > 1)
 		e->prof--;
@@ -49,21 +47,13 @@ void		treat_keycode(int keycode, t_env *e)
 	}
 	ft_bzero(e->data, e->sl * WINY);
 	if (keycode == 124 || keycode == 65363)
-		e->x1 += 0.01;
+		e->pos_x += 0.01;
 	else if (keycode == 125 || keycode == 65364)
-	{
-		if (ft_strcmp("julia", e->proj) == 0)
-			e->y1 += 0.01;
-		else
-			e->x2 += 0.01;
-	}
+		e->pos_y += 0.01;
 	else if (keycode == 126 || keycode == 65362)
-	{
-		if (ft_strcmp("julia", e->proj) == 0)
-			e->y1 -= 0.01;
-		else
-			e->x2 -= 0.01;
-	}
+		e->pos_y -= 0.01;
+	else if (keycode == 123 || keycode == 65361)
+		e->pos_x -= 0.01;
 	else
 		treat_keycode_2(keycode, e);
 }

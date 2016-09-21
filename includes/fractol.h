@@ -39,10 +39,8 @@ typedef struct	s_env
 	double		c_i;
 	double 		z_r;
 	double		z_i;
-	double		x1;
-	double		y1;
-	double		x2;
-	double		y2;
+	double		pos_x;
+	double		pos_y;
 	double		prof;
 	double		zoom;
 	double		centerx;
