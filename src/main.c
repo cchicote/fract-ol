@@ -83,8 +83,8 @@ void		manage_button(int button, int x, int y, t_env *e)
 		}
 		else if (button == 5)
 		{
-			e->pos_x += (WINX / 2 - x) / 400;
-			e->pos_y += (WINY / 2 - y) / 400;
+			e->pos_x += x / 200;
+			e->pos_y += y / 200;
 			e->zoom *= 1.5;
 		}
 		ft_bzero(e->data, e->sl * WINY);
