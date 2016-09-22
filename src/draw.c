@@ -43,8 +43,8 @@ void		burningship(t_env *e, double x, double y)
 	double i;
 	double tmp;
 
-	e->z_r = 0;
-	e->z_i = 0;
+	e->z_r = e->mouse_param_x;
+	e->z_i = e->mouse_param_y;
 	e->c_r = x / WINX / 2 * e->zoom + e->pos_x;
 	e->c_i = y / WINY / 2 * e->zoom + e->pos_y;
 	i = 0;
@@ -55,8 +55,7 @@ void		burningship(t_env *e, double x, double y)
 		e->z_i = 2 * fabs(e->z_i) * fabs(tmp) + e->c_i;
 		i++;
 	}
-	if (i == e->prof)
-		my_pixel_put(e, (int)x, (int)y, e->color);
+	my_pixel_put(e, (int)x, (int)y, choose_color(e, i));
 }
 
 
@@ -70,13 +69,20 @@ void		prep_julia(t_env *e, double x, double y)
 	julia(e, x, y);
 }
 
+int			choose_color(t_env *e, int i)
+{
+	if (i < e->prof)
+		return (e->color_begin + e->color_end * (i));
+	return (e->color_start);
+}
+
 void		julia(t_env *e, double x, double y)
 {
 	double	i;
 	double	tmp;
 
-	e->c_r = 0.285;
-	e->c_i = 0.01;
+	e->c_r = e->mouse_param_x;
+	e->c_i = e->mouse_param_y;
 	e->z_r = x / WINX / 2 * e->zoom + e->pos_x;
 	e->z_i = y / WINY / 2 * e->zoom + e->pos_y;
 	i = 0;
@@ -87,8 +93,7 @@ void		julia(t_env *e, double x, double y)
 		e->z_i = (e->z_i + e->z_i) * tmp + e->c_i;
 		i++;
 	}
-	if (i == e->prof)
-		my_pixel_put(e, (int)x, (int)y, e->color);
+	my_pixel_put(e, (int)x, (int)y, choose_color(e, i));
 }
 
 void		prep_mandelbrot(t_env *e, double x, double y)
@@ -108,8 +113,8 @@ void		mandelbrot(t_env *e, double x, double y)
 
 	e->c_r = x / WINX / 2 * e->zoom + e->pos_x;
 	e->c_i = y / WINY / 2 * e->zoom + e->pos_y;
-	e->z_r = 0;
-	e->z_i = 0;
+	e->z_r = e->mouse_param_x;
+	e->z_i = e->mouse_param_y;
 	i = 0;
 	while ((e->z_r * e->z_r + e->z_i * e->z_i < 4) && (i < e->prof))
 	{
@@ -118,8 +123,7 @@ void		mandelbrot(t_env *e, double x, double y)
 		e->z_i = (e->z_i + e->z_i) * tmp + e->c_i;
 		i++;
 	}
-	if (i == e->prof)
-		my_pixel_put(e, (int)x, (int)y, e->color);
+	my_pixel_put(e, (int)x, (int)y, choose_color(e, i));
 }
 
 void		navigante(t_env *e)
@@ -143,5 +147,5 @@ void		navigante(t_env *e)
 		}
 	}
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
-	ft_putendl("let's draw");
+	// ft_putendl("let's draw");
 }

@@ -20,20 +20,34 @@ void		treat_keycode_2(int keycode, t_env *e)
 		e->prof--;
 	else if (keycode == 47 || keycode == 46)
 	{
-		e->zoom += 0.05;
+		e->zoom *= 1.5;
+		// printf("e->zoom : %f\n", e->zoom);
 	}
 	else if (keycode == 43 || keycode == 44)
 	{
-		e->zoom -= 0.05;
+		e->zoom /= 1.5;
+		// printf("e->zoom : %f\n", e->zoom);
 	}
-	else if (keycode == 65436 || keycode == 83)
-		e->color = 0x228B22;
-	else if (keycode == 65433 || keycode == 84)
-		e->color = 0xDA70D6;
-	else if (keycode == 65438 || keycode == 82)
-		e->color = 0xffffff;
-	else if (keycode == 65435 || keycode == 85)
-		e->color = 0x5F9EA0;
+	else if (keycode == 8)
+	{
+		if (e->mouse_activate == 0)
+			e->mouse_activate = 1;
+		else
+			e->mouse_activate = 0;
+	}
+	else if (keycode == 15 && e->mouse_activate == 1)
+	{
+		e->mouse_param_x = 0;
+		e->mouse_param_y = 0;
+	}
+	// else if (keycode == 65436 || keycode == 83)
+	// 	e->color = 0x228B22;
+	// else if (keycode == 65433 || keycode == 84)
+	// 	e->color = 0xDA70D6;
+	// else if (keycode == 65438 || keycode == 82)
+	// 	e->color = 0xffffff;
+	// else if (keycode == 65435 || keycode == 85)
+	// 	e->color = 0x5F9EA0;
 }
 
 void		treat_keycode(int keycode, t_env *e)
