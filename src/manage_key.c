@@ -28,14 +28,14 @@ void		treat_keycode_2(int keycode, t_env *e)
 		e->zoom /= 1.5;
 		// printf("e->zoom : %f\n", e->zoom);
 	}
-	else if (keycode == 8)
+	else if (keycode == 8 || keycode == 99)
 	{
 		if (e->mouse_activate == 0)
 			e->mouse_activate = 1;
 		else
 			e->mouse_activate = 0;
 	}
-	else if (keycode == 15 && e->mouse_activate == 1)
+	else if ((keycode == 15 || keycode == 114) && e->mouse_activate == 1)
 	{
 		e->mouse_param_x = 0;
 		e->mouse_param_y = 0;

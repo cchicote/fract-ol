@@ -31,8 +31,8 @@ void		prep_burningship(t_env *e, double x, double y)
 {
 	if (e->pos_x == 0 && e->pos_y == 0)
 	{
-		e->pos_x = -2.1;
-		e->pos_y = -2.1;
+		e->pos_x = -1.82;
+		e->pos_y = -2.07;
 	}
 	burningship(e, x, y);
 }
@@ -63,8 +63,8 @@ void		prep_julia(t_env *e, double x, double y)
 {
 	if (e->pos_x == 0 && e->pos_y == 0)
 	{
-		e->pos_x = -1;
-		e->pos_y = -1.2;
+		e->pos_x = -1.49;
+		e->pos_y = -1.48;
 	}
 	julia(e, x, y);
 }
@@ -101,7 +101,7 @@ void		prep_mandelbrot(t_env *e, double x, double y)
 	if (e->pos_x == 0 && e->pos_y == 0)
 	{
 		e->pos_x = -2.1;
-		e->pos_y = -1.2;
+		e->pos_y = -1.5;
 	}
 	mandelbrot(e, x, y);
 }
