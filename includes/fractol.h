@@ -54,7 +54,7 @@ typedef struct	s_env
 	double		mouse_param_y;
 	double		echelle;
 	int			mouse_activate;
-	int			randomize;
+	int			rdm;
 }				t_env;
 
 /*

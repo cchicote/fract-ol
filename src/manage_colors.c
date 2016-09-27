@@ -60,11 +60,12 @@ void		manage_colors2(int keycode, t_env *e)
 		e->color_begin = 0xFF6347;
 		e->color_end = 0x00CED1;
 	}
+	else if (keycode == 89)
+		randomize(e);
 }
 
 void		randomize(t_env *e)
 {
-	e->randomize = 1;
 	e->color_begin = rand();
 	e->color_end = rand();
 }

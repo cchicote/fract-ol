@@ -33,7 +33,7 @@ int			env_init(t_env *new, char *argv)
 	new->color_begin = 0x800080;
 	new->color_end = 0xFA8072;
 	new->color_start = 0x000000;
-	new->randomize = 0;
+	new->rdm = 0;
 	return (0);
 }
 
@@ -61,10 +61,15 @@ int			read_arg(t_env *e, char *argv)
 
 void		treat_mouse(int x, int y, t_env *e)
 {
-	if (e->mouse_activate == 0 && x <= WINX && y <= WINY && x >= 0 && y >= 0)
+	if (x <= WINX && y <= WINY && x >= 0 && y >= 0)
 	{
-		e->mouse_param_x = (WINX / 2 - x) / 200;
-		e->mouse_param_y = (WINY / 2 - y) / 200;
+		if (e->rdm == 1)
+			randomize(e);
+		if (e->mouse_activate == 0)
+		{
+			e->mouse_param_x = (WINX / 2 - x) / 200;
+			e->mouse_param_y = (WINY / 2 - y) / 200;
+		}
 		// printf("x : %f\n", e->mouse_param_x);
 		// printf("y : %f\n", e->mouse_param_y);
 		ft_bzero(e->data, e->sl * WINY);
@@ -88,6 +93,8 @@ void		manage_button(int button, int x, int y, t_env *e)
 			e->pos_y += y / 200;
 			e->zoom *= 1.5;
 		}
+		if (e->rdm == 1)
+			randomize(e);
 		ft_bzero(e->data, e->sl * WINY);
 		navigante(e);
 	}
@@ -95,14 +102,12 @@ void		manage_button(int button, int x, int y, t_env *e)
 
 int			manage_mouse(int x, int y, void *e)
 {
-	randomize(e);
 	treat_mouse(x, y, e);
 	return (0);
 }
 
 int			mouse_button(int button, int x, int y, void *e)
 {
-	randomize(e);
 	manage_button(button, x, y, e);
 	return (0);
 }

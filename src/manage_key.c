@@ -60,6 +60,13 @@ void		treat_keycode(int keycode, t_env *e)
 		e->pos_y -= 0.01;
 	else if (keycode == 123 || keycode == 65361)
 		e->pos_x -= 0.01;
+	else if (keycode == 1)
+	{
+		if (e->rdm == 0)
+			e->rdm = 1;
+		else
+			e->rdm = 0;
+	}
 	else
 		treat_keycode_2(keycode, e);
 }
