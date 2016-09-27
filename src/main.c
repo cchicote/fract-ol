@@ -33,6 +33,7 @@ int			env_init(t_env *new, char *argv)
 	new->color_begin = 0x800080;
 	new->color_end = 0xFA8072;
 	new->color_start = 0x000000;
+	new->randomize = 0;
 	return (0);
 }
 
@@ -94,12 +95,14 @@ void		manage_button(int button, int x, int y, t_env *e)
 
 int			manage_mouse(int x, int y, void *e)
 {
+	randomize(e);
 	treat_mouse(x, y, e);
 	return (0);
 }
 
 int			mouse_button(int button, int x, int y, void *e)
 {
+	randomize(e);
 	manage_button(button, x, y, e);
 	return (0);
 }

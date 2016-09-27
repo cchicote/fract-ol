@@ -19,15 +19,9 @@ void		treat_keycode_2(int keycode, t_env *e)
 	else if ((keycode == 78 || keycode == 65453) && e->prof > 1)
 		e->prof--;
 	else if (keycode == 47 || keycode == 46)
-	{
 		e->zoom *= 1.5;
-		// printf("e->zoom : %f\n", e->zoom);
-	}
 	else if (keycode == 43 || keycode == 44)
-	{
 		e->zoom /= 1.5;
-		// printf("e->zoom : %f\n", e->zoom);
-	}
 	else if (keycode == 8 || keycode == 99)
 	{
 		if (e->mouse_activate == 0)
@@ -39,60 +33,18 @@ void		treat_keycode_2(int keycode, t_env *e)
 	{
 		e->mouse_param_x = 0;
 		e->mouse_param_y = 0;
+		e->pos_x = 0;
+		e->pos_y = 0;
+		e->zoom = 6;
+		e->prof = 10;
 	}
-	else if (keycode == 65436 || keycode == 83) // RED
-	{
-		e->color_begin = 0x000000;
-		e->color_end = 0xCD0000;
-		e->color_start = 0x000000;
-	}
-	else if (keycode == 65433 || keycode == 84) // GREEN
-	{
-		e->color_begin = 0x000000;
-		e->color_end = 0x00CD00;
-		e->color_start = 0x000000;
-	}
-	else if (keycode == 65435 || keycode == 85) // BLUE
-	{
-		e->color_begin = 0x000000;
-		e->color_end = 0x0000CD;
-		e->color_start = 0x000000;
-	}
-	else if (keycode == 65438 || keycode == 82) // RESET
-	{
-		e->color_begin = 0x800080;
-		e->color_end = 0xFA8072;
-		e->color_start = 0x000000;
-	}
-	else if (keycode == 65430 || keycode == 65) // WHITE
-	{
-		e->color_begin = 0x000000;
-		e->color_end = 0x0F0F0F;
-		e->color_start = 0x000000;
-	}
-	else if (keycode == 65430 || keycode == 86) // PSY1
-	{
-		e->color_begin = 0xAF0EFB;
-		e->color_end = 0xBFE0FA;
-		e->color_start = 0x000000;
-	}
-	else if (keycode == 87)
-	{
-		e->color_begin = 0xabcdef;
-		e->color_end = 0xfedcba;
-		e->color_start = 0x000000;
-	}
-	else if (keycode == 88)
-	{
-		e->color_begin = 0xFF6347;
-		e->color_end = 0x00CED1;
-		e->color_start = 0x000000;
-	}
+	else if ((keycode >= 82 && keycode <= 89) || keycode == 65)
+		manage_colors(keycode, e);
 }
 
 void		treat_keycode(int keycode, t_env *e)
 {
-	ft_putnbrendl(keycode);
+	// ft_putnbrendl(keycode);
 	if (keycode == 53 || keycode == 65307)
 	{
 		mlx_destroy_window(e->mlx, e->win);

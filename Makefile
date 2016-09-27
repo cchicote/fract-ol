@@ -29,6 +29,7 @@ PATH_SRC = src/
 SRC = main.c \
 		draw.c \
 		manage_key.c \
+		manage_colors.c \
 
 SRCO = $(patsubst %.c, %.o,$(addprefix $(PATH_SRC), $(SRC)))
 

@@ -52,7 +52,9 @@ typedef struct	s_env
 	double		zoom_y;
 	double		mouse_param_x;
 	double		mouse_param_y;
+	double		echelle;
 	int			mouse_activate;
+	int			randomize;
 }				t_env;
 
 /*
@@ -70,6 +72,15 @@ int				read_arg(t_env *e, char *argv);
 int				manage_key(int keycode, void *e);
 void			treat_keycode_2(int keycode, t_env *e);
 void			treat_keycode(int keycode, t_env *e);
+
+/*
+** MANAGE_COLORS.C
+*/
+
+void			manage_colors(int keycode, t_env *e);
+void			manage_colors2(int keycode, t_env *e);
+void			randomize(t_env *e);
+
 
 /*
 ** DRAW.C
