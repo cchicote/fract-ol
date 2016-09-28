@@ -20,8 +20,8 @@
 # include <math.h>
 # include <mlx.h>
 # include <fcntl.h>
-# define WINX 700.0
-# define WINY 700.0
+# define WINX 400.0
+# define WINY 400.0
 
 
 typedef struct	s_env
@@ -90,10 +90,7 @@ void			my_pixel_put(t_env *e, int x, int y, int color);
 void			navigante(t_env *e);
 void			mandelbrot(t_env *e, double x, double y);
 void			julia(t_env *e, double x, double y);
-void			prep_julia(t_env *e, double x, double y);
-void			prep_mandelbrot(t_env *e, double x, double y);
 void			burningship(t_env *e, double x, double y);
-void			prep_burningship(t_env *e, double x, double y);
 int				choose_color(t_env *e, int i);
 
 

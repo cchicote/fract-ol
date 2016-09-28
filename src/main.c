@@ -21,7 +21,7 @@ int			env_init(t_env *new, char *argv)
 	new->img = mlx_new_image(new->mlx, WINX, WINY);
 	new->data = mlx_get_data_addr(new->img, &(new->bpp), &(new->sl), &(new->endian));
 	new->prof = 10;
-	new->zoom = 6;
+	new->zoom = WINX / 4;
 	new->pos_x = 0;
 	new->pos_y = 0;
 	new->c_r = 0;
@@ -64,36 +64,37 @@ void		treat_mouse(int x, int y, t_env *e)
 	if (x <= WINX && y <= WINY && x >= 0 && y >= 0)
 	{
 		if (e->rdm == 1)
+		{
 			randomize(e);
+			ft_bzero(e->data, e->sl * WINY);
+			navigante(e);
+		}
 		if (e->mouse_activate == 0)
 		{
 			e->mouse_param_x = (WINX / 2 - x) / 200;
 			e->mouse_param_y = (WINY / 2 - y) / 200;
+			ft_bzero(e->data, e->sl * WINY);
+			navigante(e);
 		}
 		// printf("x : %f\n", e->mouse_param_x);
 		// printf("y : %f\n", e->mouse_param_y);
-		ft_bzero(e->data, e->sl * WINY);
-		navigante(e);
 	}
 }
 
 void		manage_button(int button, int x, int y, t_env *e)
 {
-	if (e->mouse_activate == 0 && x <= WINX && y <= WINY && x >= 0 && y >= 0)
+	// ft_putnbrendl(button);
+	if (x <= WINX && y <= WINY && x >= 0 && y >= 0)
 	{
 		if (button == 4)
 		{
-			e->pos_x -= x / 200;
-			e->pos_y -= y / 200;
-			e->zoom /= 1.5;
-		}
-		else if (button == 5)
-		{
-			e->pos_x += x / 200;
-			e->pos_y += y / 200;
+			e->pos_x -= ((double)WINX / 2 - x) / e->zoom / 2;
+			e->pos_y -= ((double)WINY / 2 - y) / e->zoom / 2;
 			e->zoom *= 1.5;
 		}
-		if (e->rdm == 1)
+		else if (button == 5)
+			e->zoom /= 1.5;
+		if (e->rdm == 1 && e->mouse_activate == 1)
 			randomize(e);
 		ft_bzero(e->data, e->sl * WINY);
 		navigante(e);
@@ -128,8 +129,9 @@ int			main(int argc, char **argv)
 		return (0);
 	navigante(&e);
 	mlx_hook(e.win, KeyPress, KeyPressMask, manage_key, &e);
-	mlx_hook(e.win, 4, (1 << 11), mouse_button, &e); // vers le haut
-	mlx_hook(e.win, 5, (1 << 12), mouse_button, &e); // vers le bas
+	// mlx_hook(e.win, 4, (1 << 11), mouse_button, &e); // vers le haut
+	// mlx_hook(e.win, 5, (1 << 12), mouse_button, &e); // vers le bas
+	mlx_mouse_hook(e.win, mouse_button, &e);
 	mlx_hook(e.win, 6, (1L << 6), manage_mouse, &e);
 	mlx_loop(e.mlx);
 	return (0);

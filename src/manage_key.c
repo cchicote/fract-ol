@@ -45,6 +45,7 @@ void		treat_keycode_2(int keycode, t_env *e)
 void		treat_keycode(int keycode, t_env *e)
 {
 	// ft_putnbrendl(keycode);
+	ft_putnbrendl(e->zoom);
 	if (keycode == 53 || keycode == 65307)
 	{
 		mlx_destroy_window(e->mlx, e->win);
@@ -53,14 +54,14 @@ void		treat_keycode(int keycode, t_env *e)
 	}
 	ft_bzero(e->data, e->sl * WINY);
 	if (keycode == 124 || keycode == 65363)
-		e->pos_x += 0.01;
+		e->pos_x += 1 / e->zoom * 2;
 	else if (keycode == 125 || keycode == 65364)
-		e->pos_y += 0.01;
+		e->pos_y += 1 / e->zoom * 2;
 	else if (keycode == 126 || keycode == 65362)
-		e->pos_y -= 0.01;
+		e->pos_y -= 1 / e->zoom * 2;
 	else if (keycode == 123 || keycode == 65361)
-		e->pos_x -= 0.01;
-	else if (keycode == 1)
+		e->pos_x -= 1 / e->zoom * 2;
+	else if (keycode == 1 || keycode == 115)
 	{
 		if (e->rdm == 0)
 			e->rdm = 1;
