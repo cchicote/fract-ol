@@ -10,14 +10,24 @@ DOWNARROW : bouger le cadre vers le bas
 RIGHTARROW : bouger le cadre vers la droite
 LEFTARROW : bouger le cadre vers la gauche
 
-+ : augmente le nombre de pixels affichés
-- : diminue le nombre de pixels affichés
+"+" : augmente le nombre de pixels affichés
+
+"-" : diminue le nombre de pixels affichés
+
 
 COULEURS :
+
 . : noir et blanc
+
 0 : couleurs de base (psychédélique 0)
+
 1 / 2 / 3 : RVB (Rouge / Vert / Bleu)
+
 4 : psychédélique 1
+
 5 : psychédélique 2
+
 6 : psychédélique 3
+
 7 : aléatoire
+
