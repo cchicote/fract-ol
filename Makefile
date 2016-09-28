@@ -30,6 +30,7 @@ SRC = main.c \
 		draw.c \
 		manage_key.c \
 		manage_colors.c \
+		manage_mouse.c \
 
 SRCO = $(patsubst %.c, %.o,$(addprefix $(PATH_SRC), $(SRC)))
 

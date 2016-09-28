@@ -25,8 +25,6 @@ void		my_pixel_put(t_env *e, int x, int y, int color)
 	}
 }
 
-// quand on zoom, pour zoomer au milieu il faut rajouter la position (WINX / 2) aux coordonnees
-
 void		burningship(t_env *e, double x, double y)
 {
 	double i;
@@ -47,13 +45,6 @@ void		burningship(t_env *e, double x, double y)
 	my_pixel_put(e, (int)x, (int)y, choose_color(e, i));
 }
 
-int			choose_color(t_env *e, int i)
-{
-	if (i < e->prof)
-		return (e->color_begin + e->color_end * (i));
-	return (e->color_start);
-}
-
 void		julia(t_env *e, double x, double y)
 {
 	double	i;
@@ -63,7 +54,6 @@ void		julia(t_env *e, double x, double y)
 	e->c_i = e->mouse_param_y;
 	e->z_r = (x - WINX / 2) / e->zoom + e->pos_x;
 	e->z_i = (y - WINY / 2) / e->zoom + e->pos_y;
-	// printf("z_r : %f // z_i : %f\n", e->z_r, e->z_i);
 	i = 0;
 	while ((e->z_r * e->z_r + e->z_i * e->z_i < 4) && (i < e->prof))
 	{
@@ -116,5 +106,4 @@ void		navigante(t_env *e)
 		}
 	}
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
-	// ft_putendl("let's draw");
 }

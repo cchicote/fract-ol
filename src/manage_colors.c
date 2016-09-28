@@ -12,6 +12,13 @@
 
 #include "../includes/fractol.h"
 
+int			choose_color(t_env *e, int i)
+{
+	if (i < e->prof)
+		return (e->color_begin + e->color_end * (i));
+	return (e->color_start);
+}
+
 void		manage_colors(int keycode, t_env *e)
 {
 	if (keycode == 65436 || keycode == 83) // RED

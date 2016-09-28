@@ -28,10 +28,10 @@ int			env_init(t_env *new, char *argv)
 	new->c_i = 0;
 	new->centerx = WINX;
 	new->centery = WINY;
-	new->mouse_activate = 0;
+	new->mouse_activate = 1;
 	new->fract = 0;
-	new->color_begin = 0x800080;
-	new->color_end = 0xFA8072;
+	new->color_begin = 0x000000;
+	new->color_end = 0x0F0F0F;
 	new->color_start = 0x000000;
 	new->rdm = 0;
 	return (0);
@@ -56,60 +56,6 @@ int			read_arg(t_env *e, char *argv)
 		ft_putendl("-burningship");
 		return (-1);
 	}
-	return (0);
-}
-
-void		treat_mouse(int x, int y, t_env *e)
-{
-	if (x <= WINX && y <= WINY && x >= 0 && y >= 0)
-	{
-		if (e->rdm == 1)
-		{
-			randomize(e);
-			ft_bzero(e->data, e->sl * WINY);
-			navigante(e);
-		}
-		if (e->mouse_activate == 0)
-		{
-			e->mouse_param_x = (WINX / 2 - x) / 200;
-			e->mouse_param_y = (WINY / 2 - y) / 200;
-			ft_bzero(e->data, e->sl * WINY);
-			navigante(e);
-		}
-		// printf("x : %f\n", e->mouse_param_x);
-		// printf("y : %f\n", e->mouse_param_y);
-	}
-}
-
-void		manage_button(int button, int x, int y, t_env *e)
-{
-	// ft_putnbrendl(button);
-	if (x <= WINX && y <= WINY && x >= 0 && y >= 0)
-	{
-		if (button == 4)
-		{
-			e->pos_x -= ((double)WINX / 2 - x) / e->zoom / 2;
-			e->pos_y -= ((double)WINY / 2 - y) / e->zoom / 2;
-			e->zoom *= 1.5;
-		}
-		else if (button == 5)
-			e->zoom /= 1.5;
-		if (e->rdm == 1 && e->mouse_activate == 1)
-			randomize(e);
-		ft_bzero(e->data, e->sl * WINY);
-		navigante(e);
-	}
-}
-
-int			manage_mouse(int x, int y, void *e)
-{
-	treat_mouse(x, y, e);
-	return (0);
-}
-
-int			mouse_button(int button, int x, int y, void *e)
-{
-	manage_button(button, x, y, e);
 	return (0);
 }
 

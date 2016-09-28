@@ -37,6 +37,8 @@ typedef struct	s_env
 	int			color_begin;
 	int			color_end;
 	int			fract;
+	int			mouse_activate;
+	int			rdm;
 	char		*proj;
 	double		c_r;
 	double		c_i;
@@ -53,8 +55,6 @@ typedef struct	s_env
 	double		mouse_param_x;
 	double		mouse_param_y;
 	double		echelle;
-	int			mouse_activate;
-	int			rdm;
 }				t_env;
 
 /*
@@ -77,10 +77,19 @@ void			treat_keycode(int keycode, t_env *e);
 ** MANAGE_COLORS.C
 */
 
+int				choose_color(t_env *e, int i);
 void			manage_colors(int keycode, t_env *e);
 void			manage_colors2(int keycode, t_env *e);
 void			randomize(t_env *e);
 
+/*
+** MANAGE_MOUSE.C
+*/
+
+int			manage_mouse(int x, int y, void *e);
+int			mouse_button(int button, int x, int y, void *e);
+void		manage_button(int button, int x, int y, t_env *e);
+void		treat_mouse(int x, int y, t_env *e);
 
 /*
 ** DRAW.C
@@ -91,7 +100,6 @@ void			navigante(t_env *e);
 void			mandelbrot(t_env *e, double x, double y);
 void			julia(t_env *e, double x, double y);
 void			burningship(t_env *e, double x, double y);
-int				choose_color(t_env *e, int i);
 
 
 #endif

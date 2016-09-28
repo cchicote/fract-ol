@@ -35,7 +35,7 @@ void		treat_keycode_2(int keycode, t_env *e)
 		e->mouse_param_y = 0;
 		e->pos_x = 0;
 		e->pos_y = 0;
-		e->zoom = 6;
+		e->zoom = WINX / 4;
 		e->prof = 10;
 	}
 	else if ((keycode >= 82 && keycode <= 89) || keycode == 65)
@@ -44,8 +44,6 @@ void		treat_keycode_2(int keycode, t_env *e)
 
 void		treat_keycode(int keycode, t_env *e)
 {
-	// ft_putnbrendl(keycode);
-	ft_putnbrendl(e->zoom);
 	if (keycode == 53 || keycode == 65307)
 	{
 		mlx_destroy_window(e->mlx, e->win);
