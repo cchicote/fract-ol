@@ -24,6 +24,8 @@ LEFTARROW : bouger le cadre vers la gauche
 "-" : diminue le nombre de pixels affichés
 
 
+les touches 1, 2 et 3 permettent respectivement d'afficher les fractales mandelbrot, julia et burningship
+
 
 COULEURS :
 

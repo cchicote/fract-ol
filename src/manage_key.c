@@ -12,34 +12,21 @@
 
 #include "../includes/fractol.h"
 
-void		treat_keycode_2(int keycode, t_env *e)
+int			manage_key(int keycode, void *e)
 {
-	if (keycode == 69 || keycode == 65451)
-		e->prof++;
-	else if ((keycode == 78 || keycode == 65453) && e->prof > 1)
-		e->prof--;
-	else if (keycode == 47 || keycode == 46)
-		e->zoom *= 1.5;
-	else if (keycode == 43 || keycode == 44)
-		e->zoom /= 1.5;
-	else if (keycode == 8 || keycode == 99)
-	{
-		if (e->mouse_activate == 0)
-			e->mouse_activate = 1;
-		else
-			e->mouse_activate = 0;
-	}
-	else if ((keycode == 15 || keycode == 114) && e->mouse_activate == 1)
-	{
-		e->mouse_param_x = 0;
-		e->mouse_param_y = 0;
-		e->pos_x = 0;
-		e->pos_y = 0;
-		e->zoom = WINX / 4;
-		e->prof = 10;
-	}
-	else if ((keycode >= 82 && keycode <= 89) || keycode == 65)
-		manage_colors(keycode, e);
+	treat_keycode(keycode, e);
+	navigante(e);
+	return (0);
+}
+
+void		reset_param(t_env *e)
+{
+	e->mouse_param_x = 0;
+	e->mouse_param_y = 0;		
+	e->pos_x = 0;
+	e->pos_y = 0;
+	e->zoom = WINX / 4;
+	e->prof = 10;
 }
 
 void		treat_keycode(int keycode, t_env *e)
@@ -70,9 +57,36 @@ void		treat_keycode(int keycode, t_env *e)
 		treat_keycode_2(keycode, e);
 }
 
-int			manage_key(int keycode, void *e)
+void		treat_keycode_2(int keycode, t_env *e)
 {
-	treat_keycode(keycode, e);
-	navigante(e);
-	return (0);
+	if (keycode == 69 || keycode == 65451)
+		e->prof++;
+	else if ((keycode == 78 || keycode == 65453) && e->prof > 1)
+		e->prof--;
+	else if (keycode == 47 || keycode == 46)
+		e->zoom *= 1.5;
+	else if (keycode == 43 || keycode == 44)
+		e->zoom /= 1.5;
+	else if (keycode == 8 || keycode == 99)
+	{
+		if (e->mouse_activate == 0)
+			e->mouse_activate = 1;
+		else
+			e->mouse_activate = 0;
+	}
+	else if ((keycode == 15 || keycode == 114) && e->mouse_activate == 1)
+		reset_param(e);
+	else if ((keycode >= 82 && keycode <= 89) || keycode == 65)
+		manage_colors(keycode, e);
+	else if (keycode == 49 || keycode == 50 || keycode == 51)
+	{
+		if (keycode == 49 && ft_strcmp(e->proj, "mandelbrot") != 0)
+			e->proj = ft_strdup("mandelbrot");
+		else if (keycode == 50 && ft_strcmp(e->proj, "julia") != 0)
+			e->proj = ft_strdup("julia");
+		else if (keycode == 51 && ft_strcmp(e->proj, "burningship") != 0)
+			e->proj = ft_strdup("burningship");
+		reset_param(e);
+		navigante(e);
+	}
 }

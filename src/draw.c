@@ -25,21 +25,44 @@ void		my_pixel_put(t_env *e, int x, int y, int color)
 	}
 }
 
-void		burningship(t_env *e, double x, double y)
+void		navigante(t_env *e)
 {
-	double i;
-	double tmp;
+	double	x;
+	double 	y;
 
-	e->z_r = e->mouse_param_x;
-	e->z_i = e->mouse_param_y;
+	x = -1;
+	y = -1;
+	while (++y < WINY)
+	{
+		x = -1;
+		while (++x < WINX)
+		{
+			if (ft_strcmp(e->proj, "julia") == 0)
+				julia(e, x, y);
+			else if (ft_strcmp(e->proj, "burningship") == 0)
+				burningship(e, x, y);
+			else
+				mandelbrot(e, x, y);
+		}
+	}
+	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
+}
+
+void		mandelbrot(t_env *e, double x, double y)
+{
+	double	i;
+	double	tmp;
+
 	e->c_r = (x - WINX / 2) / e->zoom + e->pos_x;
 	e->c_i = (y - WINY / 2) / e->zoom + e->pos_y;
+	e->z_r = e->mouse_param_x;
+	e->z_i = e->mouse_param_y;
 	i = 0;
 	while ((e->z_r * e->z_r + e->z_i * e->z_i < 4) && (i < e->prof))
 	{
 		tmp = e->z_r;
 		e->z_r = e->z_r * e->z_r - e->z_i * e->z_i + e->c_r;
-		e->z_i = 2 * fabs(e->z_i) * fabs(tmp) + e->c_i;
+		e->z_i = (e->z_i + e->z_i) * tmp + e->c_i;
 		i++;
 	}
 	my_pixel_put(e, (int)x, (int)y, choose_color(e, i));
@@ -65,45 +88,22 @@ void		julia(t_env *e, double x, double y)
 	my_pixel_put(e, (int)x, (int)y, choose_color(e, i));
 }
 
-void		mandelbrot(t_env *e, double x, double y)
+void		burningship(t_env *e, double x, double y)
 {
-	double	i;
-	double	tmp;
+	double i;
+	double tmp;
 
-	e->c_r = (x - WINX / 2) / e->zoom + e->pos_x;
-	e->c_i = (y - WINY / 2) / e->zoom + e->pos_y;
 	e->z_r = e->mouse_param_x;
 	e->z_i = e->mouse_param_y;
+	e->c_r = (x - WINX / 2) / e->zoom + e->pos_x;
+	e->c_i = (y - WINY / 2) / e->zoom + e->pos_y;
 	i = 0;
 	while ((e->z_r * e->z_r + e->z_i * e->z_i < 4) && (i < e->prof))
 	{
 		tmp = e->z_r;
 		e->z_r = e->z_r * e->z_r - e->z_i * e->z_i + e->c_r;
-		e->z_i = (e->z_i + e->z_i) * tmp + e->c_i;
+		e->z_i = 2 * fabs(e->z_i) * fabs(tmp) + e->c_i;
 		i++;
 	}
 	my_pixel_put(e, (int)x, (int)y, choose_color(e, i));
-}
-
-void		navigante(t_env *e)
-{
-	double	x;
-	double 	y;
-
-	x = -1;
-	y = -1;
-	while (++y < WINY)
-	{
-		x = -1;
-		while (++x < WINX)
-		{
-			if (ft_strcmp(e->proj, "julia") == 0)
-				julia(e, x, y);
-			else if (ft_strcmp(e->proj, "burningship") == 0)
-				burningship(e, x, y);
-			else
-				mandelbrot(e, x, y);
-		}
-	}
-	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 }

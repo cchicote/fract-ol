@@ -12,6 +12,18 @@
 
 #include "../includes/fractol.h"
 
+int			manage_mouse(int x, int y, void *e)
+{
+	treat_mouse(x, y, e);
+	return (0);
+}
+
+int			mouse_button(int button, int x, int y, void *e)
+{
+	manage_button(button, x, y, e);
+	return (0);
+}
+
 void		treat_mouse(int x, int y, t_env *e)
 {
 	if (x <= WINX && y <= WINY && x >= 0 && y >= 0)
@@ -49,16 +61,4 @@ void		manage_button(int button, int x, int y, t_env *e)
 		ft_bzero(e->data, e->sl * WINY);
 		navigante(e);
 	}
-}
-
-int			manage_mouse(int x, int y, void *e)
-{
-	treat_mouse(x, y, e);
-	return (0);
-}
-
-int			mouse_button(int button, int x, int y, void *e)
-{
-	manage_button(button, x, y, e);
-	return (0);
 }

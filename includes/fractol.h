@@ -70,8 +70,9 @@ int				read_arg(t_env *e, char *argv);
 */
 
 int				manage_key(int keycode, void *e);
-void			treat_keycode_2(int keycode, t_env *e);
+void			reset_param(t_env *e);
 void			treat_keycode(int keycode, t_env *e);
+void			treat_keycode_2(int keycode, t_env *e);
 
 /*
 ** MANAGE_COLORS.C
@@ -88,8 +89,8 @@ void			randomize(t_env *e);
 
 int			manage_mouse(int x, int y, void *e);
 int			mouse_button(int button, int x, int y, void *e);
-void		manage_button(int button, int x, int y, t_env *e);
 void		treat_mouse(int x, int y, t_env *e);
+void		manage_button(int button, int x, int y, t_env *e);
 
 /*
 ** DRAW.C
