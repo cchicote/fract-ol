@@ -45,6 +45,7 @@ void		navigante(t_env *e)
 				mandelbrot(e, x, y);
 		}
 	}
+	rectangle(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 }
 

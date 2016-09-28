@@ -48,6 +48,19 @@ void		manage_button(int button, int x, int y, t_env *e)
 {
 	if (x <= WINX && y <= WINY && x >= 0 && y >= 0)
 	{
+		if (button == 1)
+		{
+			if (x <= 50 && y <= 25 && x >= 25)
+			{
+				e->fractnum++;
+				change_fract(e);
+			}
+			else if (x <= 25 && y <= 25)
+			{
+				e->fractnum--;
+				change_fract(e);
+			}
+		}
 		if (button == 4)
 		{
 			e->pos_x -= ((double)WINX / 2 - x) / e->zoom / 2;

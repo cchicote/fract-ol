@@ -80,11 +80,11 @@ void		treat_keycode_2(int keycode, t_env *e)
 		manage_colors(keycode, e);
 	else if (keycode == 49 || keycode == 50 || keycode == 51)
 	{
-		if (keycode == 49 && ft_strcmp(e->proj, "mandelbrot") != 0)
+		if (keycode == 49)
 			e->proj = ft_strdup("mandelbrot");
-		else if (keycode == 50 && ft_strcmp(e->proj, "julia") != 0)
+		else if (keycode == 50)
 			e->proj = ft_strdup("julia");
-		else if (keycode == 51 && ft_strcmp(e->proj, "burningship") != 0)
+		else if (keycode == 51)
 			e->proj = ft_strdup("burningship");
 		reset_param(e);
 		navigante(e);

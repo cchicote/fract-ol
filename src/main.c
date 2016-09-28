@@ -56,6 +56,7 @@ int			read_arg(t_env *e, char *argv)
 		ft_putendl("-burningship");
 		return (-1);
 	}
+	find_fractnum(e);
 	return (0);
 }
 

@@ -39,6 +39,7 @@ typedef struct	s_env
 	int			fract;
 	int			mouse_activate;
 	int			rdm;
+	int			fractnum;
 	char		*proj;
 	double		c_r;
 	double		c_i;
@@ -87,10 +88,11 @@ void			randomize(t_env *e);
 ** MANAGE_MOUSE.C
 */
 
-int			manage_mouse(int x, int y, void *e);
-int			mouse_button(int button, int x, int y, void *e);
-void		treat_mouse(int x, int y, t_env *e);
-void		manage_button(int button, int x, int y, t_env *e);
+int				manage_mouse(int x, int y, void *e);
+int				mouse_button(int button, int x, int y, void *e);
+void			treat_mouse(int x, int y, t_env *e);
+void			manage_button(int button, int x, int y, t_env *e);
+void			change_fract(t_env *e);
 
 /*
 ** DRAW.C
@@ -102,5 +104,12 @@ void			mandelbrot(t_env *e, double x, double y);
 void			julia(t_env *e, double x, double y);
 void			burningship(t_env *e, double x, double y);
 
+/*
+** CHANGE_FRACT.C
+*/
+
+void			change_fract(t_env *e);
+void			find_fractnum(t_env *e);
+void			rectangle(t_env *e);
 
 #endif
