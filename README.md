@@ -45,4 +45,9 @@ COULEURS :
 
 
 
-SOURIS : zoom avec la molette, a l'endroit ou la souris pointe.
+SOURIS : 
+
+zoom avec la molette, a l'endroit ou la souris pointe.
+
+possibilite de changer de fractale a l'aide du rectangle en haut a gauche : case de gauche = fractale precedente, case de droite = fractale suivante
+
