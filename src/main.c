@@ -19,7 +19,8 @@ int			env_init(t_env *new, char *argv)
 	new->mlx = mlx_init();
 	new->win = mlx_new_window(new->mlx, WINX, WINY, "fractol");
 	new->img = mlx_new_image(new->mlx, WINX, WINY);
-	new->data = mlx_get_data_addr(new->img, &(new->bpp), &(new->sl), &(new->endian));
+	new->data = mlx_get_data_addr(new->img, &(new->bpp),
+		&(new->sl), &(new->endian));
 	new->prof = 10;
 	new->zoom = WINX / 4;
 	new->pos_x = 0;
@@ -44,7 +45,8 @@ int			read_arg(t_env *e, char *argv)
 	i = -1;
 	while (argv[++i])
 		argv[i] = ft_tolower(argv[i]);
-	if (ft_strcmp(argv, "julia") == 0 || ft_strcmp(argv, "mandelbrot") == 0 || ft_strcmp(argv, "burningship") == 0)
+	if (ft_strcmp(argv, "julia") == 0 || ft_strcmp(argv, "mandelbrot") == 0
+		|| ft_strcmp(argv, "burningship") == 0)
 		e->proj = ft_strdup(argv);
 	else
 	{
@@ -76,8 +78,6 @@ int			main(int argc, char **argv)
 		return (0);
 	navigante(&e);
 	mlx_hook(e.win, KeyPress, KeyPressMask, manage_key, &e);
-	// mlx_hook(e.win, 4, (1 << 11), mouse_button, &e); // vers le haut
-	// mlx_hook(e.win, 5, (1 << 12), mouse_button, &e); // vers le bas
 	mlx_mouse_hook(e.win, mouse_button, &e);
 	mlx_hook(e.win, 6, (1L << 6), manage_mouse, &e);
 	mlx_loop(e.mlx);

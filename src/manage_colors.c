@@ -21,22 +21,22 @@ int			choose_color(t_env *e, int i)
 
 void		manage_colors(int keycode, t_env *e)
 {
-	if (keycode == 65436 || keycode == 83) // RED
+	if (keycode == 65436 || keycode == 83)
 	{
 		e->color_begin = 0x000000;
 		e->color_end = 0xCD0000;
 	}
-	else if (keycode == 65433 || keycode == 84) // GREEN
+	else if (keycode == 65433 || keycode == 84)
 	{
 		e->color_begin = 0x000000;
 		e->color_end = 0x00CD00;
 	}
-	else if (keycode == 65435 || keycode == 85) // BLUE
+	else if (keycode == 65435 || keycode == 85)
 	{
 		e->color_begin = 0x000000;
 		e->color_end = 0x0000CD;
 	}
-	else if (keycode == 65438 || keycode == 82) // RESET
+	else if (keycode == 65438 || keycode == 82)
 	{
 		e->color_begin = 0x800080;
 		e->color_end = 0xFA8072;
@@ -47,22 +47,22 @@ void		manage_colors(int keycode, t_env *e)
 
 void		manage_colors2(int keycode, t_env *e)
 {
-	if (keycode == 65430 || keycode == 65) // WHITE
+	if (keycode == 65430 || keycode == 65)
 	{
 		e->color_begin = 0x000000;
 		e->color_end = 0x0F0F0F;
 	}
-	else if (keycode == 65430 || keycode == 86) // PSY1
+	else if (keycode == 65430 || keycode == 86)
 	{
 		e->color_begin = 0xAF0EFB;
 		e->color_end = 0xBFE0FA;
 	}
-	else if (keycode == 87) // PSY2
+	else if (keycode == 87)
 	{
 		e->color_begin = 0xabcdef;
 		e->color_end = 0xfedcba;
 	}
-	else if (keycode == 88) // PSY3
+	else if (keycode == 88)
 	{
 		e->color_begin = 0xFF6347;
 		e->color_end = 0x00CED1;

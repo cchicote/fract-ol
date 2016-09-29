@@ -28,7 +28,7 @@ void		my_pixel_put(t_env *e, int x, int y, int color)
 void		navigante(t_env *e)
 {
 	double	x;
-	double 	y;
+	double	y;
 
 	x = -1;
 	y = -1;

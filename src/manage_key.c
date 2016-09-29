@@ -22,11 +22,23 @@ int			manage_key(int keycode, void *e)
 void		reset_param(t_env *e)
 {
 	e->mouse_param_x = 0;
-	e->mouse_param_y = 0;		
+	e->mouse_param_y = 0;
 	e->pos_x = 0;
 	e->pos_y = 0;
 	e->zoom = WINX / 4;
 	e->prof = 10;
+}
+
+void		move_fract_key(t_env *e, int keycode)
+{
+	if (keycode == 49 || keycode == 18)
+		e->proj = ft_strdup("mandelbrot");
+	else if (keycode == 50 || keycode == 19)
+		e->proj = ft_strdup("julia");
+	else if (keycode == 51 || keycode == 20)
+		e->proj = ft_strdup("burningship");
+	reset_param(e);
+	navigante(e);
 }
 
 void		treat_keycode(int keycode, t_env *e)
@@ -78,15 +90,7 @@ void		treat_keycode_2(int keycode, t_env *e)
 		reset_param(e);
 	else if ((keycode >= 82 && keycode <= 89) || keycode == 65)
 		manage_colors(keycode, e);
-	else if (keycode == 49 || keycode == 50 || keycode == 51)
-	{
-		if (keycode == 49)
-			e->proj = ft_strdup("mandelbrot");
-		else if (keycode == 50)
-			e->proj = ft_strdup("julia");
-		else if (keycode == 51)
-			e->proj = ft_strdup("burningship");
-		reset_param(e);
-		navigante(e);
-	}
+	else if (keycode == 49 || keycode == 50 || keycode == 51 ||
+		keycode == 18 || keycode == 19 || keycode == 20)
+		move_fract_key(e, keycode);
 }

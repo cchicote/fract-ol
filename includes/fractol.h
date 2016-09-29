@@ -20,9 +20,8 @@
 # include <math.h>
 # include <mlx.h>
 # include <fcntl.h>
-# define WINX 400.0
-# define WINY 400.0
-
+# define WINX 600.0
+# define WINY 600.0
 
 typedef struct	s_env
 {
@@ -43,7 +42,7 @@ typedef struct	s_env
 	char		*proj;
 	double		c_r;
 	double		c_i;
-	double 		z_r;
+	double		z_r;
 	double		z_i;
 	double		pos_x;
 	double		pos_y;
@@ -72,6 +71,7 @@ int				read_arg(t_env *e, char *argv);
 
 int				manage_key(int keycode, void *e);
 void			reset_param(t_env *e);
+void			move_fract_key(t_env *e, int keycode);
 void			treat_keycode(int keycode, t_env *e);
 void			treat_keycode_2(int keycode, t_env *e);
 
@@ -91,8 +91,8 @@ void			randomize(t_env *e);
 int				manage_mouse(int x, int y, void *e);
 int				mouse_button(int button, int x, int y, void *e);
 void			treat_mouse(int x, int y, t_env *e);
+void			clic_zone(t_env *e, int x, int y);
 void			manage_button(int button, int x, int y, t_env *e);
-void			change_fract(t_env *e);
 
 /*
 ** DRAW.C
