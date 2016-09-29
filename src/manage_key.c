@@ -31,6 +31,7 @@ void		reset_param(t_env *e)
 
 void		move_fract_key(t_env *e, int keycode)
 {
+	free(e->proj);
 	if (keycode == 49 || keycode == 18)
 		e->proj = ft_strdup("mandelbrot");
 	else if (keycode == 50 || keycode == 19)

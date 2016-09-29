@@ -18,6 +18,7 @@ void		change_fract(t_env *e)
 		e->fractnum = 1;
 	else if (e->fractnum < 1)
 		e->fractnum = 3;
+	free(e->proj);
 	if (e->fractnum == 1)
 		e->proj = ft_strdup("mandelbrot");
 	else if (e->fractnum == 2)
