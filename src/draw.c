@@ -47,6 +47,10 @@ void		navigante(t_env *e)
 	}
 	rectangle(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
+	mlx_string_put(e->mlx, e->win, 2, WINY - 25, 0xffffff, "fractale : ");
+	mlx_string_put(e->mlx, e->win, 110, WINY - 25, 0xffffff, e->proj);
+	mlx_string_put(e->mlx, e->win, 7, 2, 0xffffff, "<");
+	mlx_string_put(e->mlx, e->win, 35, 2, 0xffffff, ">");
 }
 
 void		mandelbrot(t_env *e, double x, double y)
